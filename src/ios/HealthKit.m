@@ -738,10 +738,16 @@ static NSString *const HKPluginKeyUUID = @"UUID";
                         double miles = [workout.totalDistance doubleValueForUnit:[HKUnit mileUnit]];
                         NSString *milesString = [NSString stringWithFormat:@"%ld", (long) miles];
 
+                        double meters = [workout.totalDistance doubleValueForUnit:[HKUnit meterUnit]];
+                        NSString *distance = [NSString stringWithFormat:@"%ld", (long) meters];
+
                         NSEnergyFormatter *energyFormatter = [NSEnergyFormatter new];
                         energyFormatter.forFoodEnergyUse = NO;
                         double joules = [workout.totalEnergyBurned doubleValueForUnit:[HKUnit jouleUnit]];
-                        NSString *calories = [energyFormatter stringFromJoules:joules];
+                        NSString *joulesString = [energyFormatter stringFromJoules:joules];
+
+                        double calories = [workout.totalEnergyBurned doubleValueForUnit:[HKUnit kilocalorieUnit]];
+                        NSString *caloriesString = [NSString stringWithFormat:@"%lf", calories];
 
                         NSMutableDictionary *entry = [
                                 @{
@@ -749,7 +755,9 @@ static NSString *const HKPluginKeyUUID = @"UUID";
                                         HKPluginKeyStartDate: [HealthKit stringFromDate:workout.startDate],
                                         HKPluginKeyEndDate: [HealthKit stringFromDate:workout.endDate],
                                         @"miles": milesString,
-                                        @"calories": calories,
+                                        @"distance": distance,
+                                        @"calories": caloriesString,
+                                        @"joules": joulesString,
                                         HKPluginKeySourceBundleId: source.bundleIdentifier,
                                         HKPluginKeySourceName: source.name,
                                         @"activityType": workoutActivity,
