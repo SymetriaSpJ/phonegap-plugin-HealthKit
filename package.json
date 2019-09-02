@@ -1,6 +1,6 @@
 {
   "version": "0.5.1",
-  "name": "com.telerik.plugins.healthkit",
+  "name": "fitatu.telerik.plugins.healthkit",
   "cordova_name": "HealthKit",
   "description": "Interact with the iOS HealthKit SDK.",
   "license": "MIT",
